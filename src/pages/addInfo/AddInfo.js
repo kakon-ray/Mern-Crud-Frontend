@@ -15,7 +15,7 @@ const AddInfo = () => {
 
             const title = event.target.title.value;
             const date = event.target.date.value;
-            const image = event.target.image.value;
+            const image = event.target.image.files[0]
 
             const formdata = new FormData();
 
