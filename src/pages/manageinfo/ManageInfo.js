@@ -57,10 +57,9 @@ const ManageInfo = () => {
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">No</th>
+            <th scope="col">Image</th>
             <th scope="col">Title</th>
             <th scope="col">Date</th>
-            <th scope="col">Image</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -73,7 +72,6 @@ const ManageInfo = () => {
                   <td>
                     <img className="img-fluid" src={`http://localhost:8000/api/postimage/${item.image}`} style={{ height: '100px' }} />
                   </td>
-                  <th>{item._id}</th>
                   <td>{item.title}</td>
                   <td>{item.date}</td>
                   <td>

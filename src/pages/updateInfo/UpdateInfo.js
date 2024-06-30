@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PostServices from '../../components/PostServices';
 import { Link, useParams } from 'react-router-dom';
+import UpdateServices from '../../components/UpdateServices';
 
 const AddInfo = () => {
 
@@ -26,8 +27,9 @@ const AddInfo = () => {
         formdata.append('title', title);
         formdata.append('date', date);
         formdata.append('image', image);
+        formdata.append('id', id);
 
-        const response = await PostServices.create(formdata);
+        const response = await UpdateServices.create(formdata);
         console.log(response)
 
         event.target.reset();
@@ -57,6 +59,8 @@ const AddInfo = () => {
         getInfo()
     },[])
 
+
+
     return (
         <div className='container'>
             <ToastContainer />
@@ -74,11 +78,11 @@ const AddInfo = () => {
                                 <div className='col-lg-12'>
                                     <Form.Group>
                                         <lebel className="mb-2">Title</lebel>
-                                        <Form.Control type="text" name='title' value={data?.title} required />
+                                        <Form.Control type="text" name='title' defaultValue={data?.title} required />
                                     </Form.Group>
                                     <Form.Group>
                                         <lebel className="mb-2">Date</lebel>
-                                        <Form.Control type="date" name='date' value={data?.date} required />
+                                        <Form.Control type="date" name='date' defaultValue={data?.date} required />
                                     </Form.Group>
                                     <Form.Group>
                                         <lebel className="mb-2">Image</lebel>
