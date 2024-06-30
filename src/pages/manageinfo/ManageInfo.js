@@ -38,7 +38,10 @@ const ManageInfo = () => {
         // },
       });
 
-      console.log(response)
+      if(response.data.success){
+        const newData = info.filter(item => item._id !== id)
+        setInfo(newData)
+      }
 
     } catch (error) {
       console.log(error);
@@ -75,7 +78,7 @@ const ManageInfo = () => {
                   <td>{item.date}</td>
                   <td>
                     <div className='d-flex gap-3'>
-                      <button className='btn btn-primary'>Update</button>
+                      <a href={`/update-info/${item._id}`} className='btn btn-primary'>Update</a>
                       <button className='btn btn-danger' onClick={()=>deleteInfo(item._id)}>Delete</button>
                     </div>
                   </td>

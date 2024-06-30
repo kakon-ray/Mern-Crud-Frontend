@@ -18,10 +18,7 @@ const Navbar = () => {
                     <li class="nav-item active">
                         <a class="nav-link" href="/add-info">Add Info</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/update-info">Update Info</a>
-                    </li>
-
+             
 
                 </ul>
 

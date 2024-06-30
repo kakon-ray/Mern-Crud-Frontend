@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +9,7 @@ import PostServices from '../../components/PostServices';
 
 const AddInfo = () => {
 
+    const navigate = useNavigate();
 
         const handleSubmit = async (event) => {
             event.preventDefault();
@@ -24,7 +25,10 @@ const AddInfo = () => {
             formdata.append('image',image);
 
            const response = await PostServices.create(formdata);
-           console.log(response)
+           
+           if(response.data.success){
+            navigate("/");
+           }
 
            event.target.reset();
 
@@ -39,7 +43,7 @@ const AddInfo = () => {
                         <div className='py-4 d-flex justify-content-between'>
                             <h2 className="text-secondary">Information Add</h2>
                             <div>
-                                <Link to="/admin/category" className='btn btn-primary'> Manage Information</Link>
+                                <Link to="/" className='btn btn-primary'> Manage Information</Link>
                             </div>
                         </div>
                         <form onSubmit={handleSubmit} enctype="multipart/form-data">
