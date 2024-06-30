@@ -7,11 +7,13 @@ import { Button, Form } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PostServices from '../../components/PostServices';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import UpdateServices from '../../components/UpdateServices';
 
 const AddInfo = () => {
 
+
+    const navigate = useNavigate();
     let { id } = useParams();
     const [data,setData] = useState();
     
@@ -20,7 +22,14 @@ const AddInfo = () => {
 
         const title = event.target.title.value;
         const date = event.target.date.value;
-        const image = event.target.image.files[0]
+
+        var image = ''
+        if(event.target.image.files.length > 0){
+            image = event.target.image.files[0]
+        }else{
+           image = data.image
+        }
+        
 
         const formdata = new FormData();
 
@@ -30,7 +39,9 @@ const AddInfo = () => {
         formdata.append('id', id);
 
         const response = await UpdateServices.create(formdata);
-        console.log(response)
+        if(response.data.success){
+            navigate("/");
+        }
 
         event.target.reset();
 
@@ -86,7 +97,8 @@ const AddInfo = () => {
                                     </Form.Group>
                                     <Form.Group>
                                         <lebel className="mb-2">Image</lebel>
-                                        <Form.Control type="file" name='image' placeholder="Image" required />
+                                        <Form.Control type="file" name='image' placeholder="Image" />
+                                     
                                         <img src={`http://localhost:8000/api/postimage/${data?.image}`} className='img-fluid border' style={{width:'100%',height:'300px'}}></img>
                                     </Form.Group>
                                 </div>
